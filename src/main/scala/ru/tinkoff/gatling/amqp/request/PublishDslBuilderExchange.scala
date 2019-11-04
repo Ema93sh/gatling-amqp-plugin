@@ -11,6 +11,9 @@ case class PublishDslBuilderExchange(
   def directExchange(name: Expression[String], routingKey: Expression[String]): PublishDslBuilderMessage =
     destination(AmqpDirectExchange(name, routingKey))
 
+  def topicExchange(name: Expression[String], routingKey: Expression[String]): PublishDslBuilderMessage =
+    destination(AmqpTopicExchange(name, routingKey))
+
   def queueExchange(name: Expression[String]): PublishDslBuilderMessage = destination(AmqpQueueExchange(name))
 
   protected def destination(dest: AmqpExchange) = PublishDslBuilderMessage(requestName, dest, configuration)
